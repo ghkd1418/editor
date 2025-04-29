@@ -38,6 +38,13 @@ class NoteController(private val repository: NoteRepository) {
         }
     }
 
+    @DeleteMapping(path = ["/{id}"])
+    fun deleteById(
+        @PathVariable id: String
+    ) {
+        repository.deleteById(ObjectId(id))
+    }
+
     private fun Note.toResponse(): NoteController.NoteResponse {
         return NoteResponse(
             id = id.toHexString(),
