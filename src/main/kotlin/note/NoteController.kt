@@ -1,7 +1,8 @@
-package com.example.demo
+package note
 
-import com.example.demo.database.model.Note
-import com.example.demo.database.repository.NoteRepository
+
+import note.database.model.Note
+import note.database.repository.NoteRepository
 import org.bson.types.ObjectId
 import org.springframework.web.bind.annotation.*
 import java.time.Instant
@@ -30,9 +31,9 @@ class NoteController(private val repository: NoteRepository) {
     }
 
     @GetMapping
-    fun findByOwnerId(
-        @RequestParam(required = true) ownerId: String
-    ): List<NoteResponse> {
+    fun findByOwnerId(): List<NoteResponse> {
+        val ownerId =
+
         return repository.findByOwnerId(ObjectId(ownerId)).map {
             it.toResponse()
         }
